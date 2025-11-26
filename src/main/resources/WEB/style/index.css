@@ -1,0 +1,65 @@
+.login-cont {
+
+    margin: 2rem auto;
+    max-width: 40ch;
+    border: 8px solid #0038FF;
+    color: #fff;
+    padding: 2ch;
+    position: relative;
+    border-image:
+            url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M16 0H8v4H4v4H0v8h4v4h4v4h8v-4h4v-4h4V8h-4V4h-4V0zm0 4v4h4v8h-4v4H8v-4H4V8h4V4h8z' fill='%230038FF'/%3E%3C/svg%3E")
+            8 stretch;
+
+
+}
+.cont {
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body {
+
+    background: #161616;
+    color: #fff;
+    font-family: '8bit','Source Code Pro', monospace;
+    line-height: 1.5;
+    font-size: 1.25rem;
+    margin: 2rem;
+}
+
+@font-face {
+    font-family: '8bit';
+    src: url("8bitwonderrusbylyajka_nominal.otf") format('opentype');
+}
+
+.input {
+    font-family: 'Source Code Pro', monospace;
+
+    background: #0f0f0f;
+    border: 2px solid #444;
+    color: #3f54d4;
+
+    border-radius: 8px;
+    outline: none;
+
+    transition: border-color .25s, box-shadow .25s, background .25s, transform 1s;
+}
+.input[type="submit"]{
+    font-family: '8bit','Source Code Pro', monospace;
+}
+
+
+.input:hover
+ {
+    border-color: #0038FF;
+    background: #1a1a1a;
+    box-shadow: 0 0 12px #0038FF,
+    0 0 6px #0038FF,
+    0 0 3px #0038FF;
+
+
+    transform: scale(1.05);
+}

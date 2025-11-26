@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="style/index.css">
+
+</head>
+<body>
+<script type="importmap">
+    {
+      "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+      }
+    }
+</script>
+<div class="cont">
+    <div class="login-cont" id="app">
+
+        <form @submit="login">
+            <div class="login">
+                <p>Логин</p>
+                <input class="input" type="text" v-model="username">
+            </div>
+            <div class="password">
+                <p>Пароль</p>
+                <input class="input" type="password" v-model="password">
+            </div>
+            <div class="button">
+                <p>Залогиниться</p>
+                <input class="input" type="submit" value="Залогиниться"/>
+            </div>
+            <br>
+            {{ message }}
+
+        </form>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script type="module" src="scripts/main.js"></script>
+</body>
+</html>
