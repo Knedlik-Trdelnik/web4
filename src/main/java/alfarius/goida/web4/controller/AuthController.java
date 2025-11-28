@@ -5,6 +5,7 @@ import alfarius.goida.web4.exceptions.NoSuchLoginException;
 import alfarius.goida.web4.models.LoginRequest;
 import alfarius.goida.web4.repository.UserRepository;
 import io.helidon.security.jwt.JwtUtil;
+import jakarta.annotation.security.PermitAll;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
@@ -22,17 +23,16 @@ import alfarius.goida.web4.models.User;
 //ssh -L 5432:localhost:5432 s467969@helios.cs.ifmo.ru -p 2222
 @Path("/auth")
 @ApplicationScoped
+@PermitAll
 public class AuthController {
     @Inject
     UserRepository userRepository;
-
-
-
 
     @POST()
     @Path("/login")
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes(MediaType.APPLICATION_JSON)
+    @PermitAll
     public Response login(LoginRequest loginRequest) {
         String name = loginRequest.getUsername();
         String password = loginRequest.getPassword();
@@ -47,10 +47,10 @@ public class AuthController {
 
         } catch (NoSuchLoginException e) {
             System.out.println("Ебать у него нет имени хахахахха");
-           return Response.status(401).build();
+           return Response.status(418).build();
         }
         System.out.println("Ебать он тупой хааххахаха");
-        return Response.status(401).build();
+        return Response.status(418).build();
     }
 
 

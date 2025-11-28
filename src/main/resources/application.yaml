@@ -1,3 +1,10 @@
 server:
   port: 8080
 
+security:
+  routing:
+    - path: "/auth/*"
+      authenticate: false
+  web-server:
+    defaults:
+      authenticate: true

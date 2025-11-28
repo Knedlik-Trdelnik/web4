@@ -9,6 +9,7 @@
     <persistence-unit name="main" transaction-type="JTA">
         <description>JaZaebalsya</description>
         <class>alfarius.goida.web4.models.User</class>
+        <class>alfarius.goida.web4.models.Dot</class>
         <properties>
             <property name="hibernate.show_sql" value="true"/>
             <property name="eclipselink.weaving" value="false"/>

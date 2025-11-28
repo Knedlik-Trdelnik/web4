@@ -2,9 +2,123 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="style/tables.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
 </head>
 <body>
-Тут будут точки!!!!!
+<script type="importmap">
+    {
+     "imports": {
+         "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+     }
+ }
+</script>
+<div class="topnav" id="myTopnav">
+    <a href="index.html">Главная</a>
+    <a href="main.html">График</a>
+    <a href="tables.html" class="active">Таблица точек</a>
+    <a href="variant.html">О варианте</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+
+
+<div class="cont">
+    <div class="dots-table" id="app">
+        <button @click="loadDots" class="load-button">
+            Загрузить точки
+        </button>
+        <p>
+            Статус: {{ status }}
+        </p>
+        <table class="table">
+            <caption>Точечки</caption>
+            <thead>
+            <tr>
+                <th scope="col">Польз.</th>
+                <th scope="col">Х</th>
+                <th scope="col">Y</th>
+                <th scope="col">R</th>
+                <th scope="col">Время обработки</th>
+                <th scope="col">Попал?</th>
+            <tbody>
+            </tbody>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<fieldset class="snow-toggle">
+    <legend class="snow-toggle__label">Переключатель осадков</legend>
+    <label class="snow-toggle__item">
+        <input class="snow-toggle__control" type="radio" name="snow" value="snowfall" checked>
+        <span class="snow-toggle__text">Снег</span>
+    </label>
+    <label class="snow-toggle__item">
+        <input class="snow-toggle__control" type="radio" name="snow" value="none">
+        <span class="snow-toggle__text">Без осадков</span>
+    </label>
+</fieldset>
+<div class="snow">
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+    <div class="snow__flake">*</div>
+</div>
+
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+</script>
+<script src="scripts/snow.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script type="module" src="scripts/table.js"></script>
 </body>
 </html>
