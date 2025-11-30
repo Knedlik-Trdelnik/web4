@@ -11,7 +11,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 @Path("/dots")
-@PermitAll
+
 public class DotsController {
     @Inject
     DotsRepository dR;

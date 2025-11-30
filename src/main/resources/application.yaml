@@ -1,10 +1,15 @@
 server:
   port: 8080
-
-security:
-  routing:
-    - path: "/auth/*"
-      authenticate: false
-  web-server:
-    defaults:
-      authenticate: true
+# ... остальные настройки
+mp.jwt.verify.issuer: "goida-lab-4"
+# Вставляем содержимое ключа прямо сюда
+mp.jwt.verify.publickey: |
+  -----BEGIN PUBLIC KEY-----
+  MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqG8NLbkG46gC0ZJx7huz
+  Pa7WjnBRT2L9zj4hzNERaXPBoz9dKiHYDdz6kdTjXNnvjurKtwdVQCQ0A2qIQrRv
+  smpVObtaGbDmvC/uqrqSBswwuzKYaMQ29yReoth+MB4R0+NTfzO/uLghlmYPgDds
+  G1DYQ4oDqtWFblOhs3CJCCKlXMnlupsUbjYmEDRucIIimrhAK+fFCsd+hSauQexk
+  NZrpkrAo0M0jJvWMJSScsqG6mMTnKcMj1G9Xbt3Pkf2e9zTpMtWe410TJfkV7qpv
+  MrHCGA0HbVTyyLyR8ToKmzqJG0VKaZSnoA3OjSnkb0BzyRa+sHRf9/M4M+SPfjSc
+  qQIDAQAB
+  -----END PUBLIC KEY-----

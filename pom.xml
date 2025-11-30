@@ -39,6 +39,12 @@
             <groupId>io.helidon.microprofile.jwt</groupId>
             <artifactId>helidon-microprofile-jwt-auth</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.helidon.security</groupId>
+            <artifactId>helidon-security-jwt</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
 
 
         <dependency>

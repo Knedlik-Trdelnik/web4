@@ -27,18 +27,18 @@ createApp({
                 // !!! ВАЖНО: Замените '/your-api-endpoint/login' на фактический URL вашего сервера !!!
                 const response = await axios.post('/auth/login', loginData)
 
+                const token = response.data.token;
+                localStorage.setItem("jwt_token", token)
                 // Обработка успешного ответа
                 console.log('Успешный вход:', response.data)
-                message.value = '✅ Успешный вход! Токен: ' + (response.data.token || 'Нет токена')
+                message.value = 'Успешный вход! Токен:' + response.data.token;
 
-                // Опционально: сохраните токен (например, в localStorage)
-                // localStorage.setItem('authToken', response.data.token)
 
             } catch (error) {
                 // Обработка ошибки
                 console.error('Ошибка входа:', error)
 
-                let errorMessage = '❌ Ошибка сети или сервера'
+                let errorMessage = ' Ошибка сети или сервера'
 
                 // Если есть ответ от сервера (например, 401 Unauthorized)
                 if (error.response) {
