@@ -7,7 +7,8 @@ import java.io.Serializable;
 @Entity
 @Table(name = "web_users")
 public class User implements Serializable {
-    @Column(nullable = false)
+    @Column(nullable = false,
+            unique=true)
     private String login;
     @Column(nullable = false)
     private String password;
@@ -42,5 +43,10 @@ public class User implements Serializable {
 
     public Long getId() {
         return id;
+    }
+
+    public User(String login, String password) {
+        this.login = login;
+        this.password = password;
     }
 }

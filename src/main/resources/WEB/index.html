@@ -17,7 +17,9 @@
     }
 </script>
 <header class="header">
-    
+    <img src="bullshit/itmo-cs-logo.png">
+    <p>Чайковский Никита Михайлович</p>
+    <p>P3217 Вар:7657</p>
 
 </header>
 <div class="topnav" id="myTopnav">
@@ -29,28 +31,74 @@
         <i class="fa fa-bars"></i>
     </a>
 </div>
-<div class="cont">
-    <div class="login-cont" id="app">
+<div id="app">
+    <div class="cont">
+        <div class="login-cont">
+            <div v-if="isLogin">
+                <form @submit="login">
 
-        <form @submit="login">
-            <div class="login">
-                <p>Логин</p>
-                <input class="input" type="text" v-model="username">
-            </div>
-            <div class="password">
-                <p>Пароль</p>
-                <input class="input" type="password" v-model="password">
-            </div>
-            <div class="button">
-                <p>Залогиниться</p>
-                <input class="input" type="submit" value="Залогиниться"/>
-            </div>
-            <br>
-            {{ message }}
+                    <div v-if="!isEnter">
+                        <div class="login">
+                            <p>Логин</p>
+                            <input class="input" type="text" v-model="username">
+                        </div>
+                        <div class="password">
+                            <p>Пароль</p>
+                            <input class="input" type="password" v-model="password">
+                        </div>
+                        <div class="another-button">
+                            <p>Залогиниться</p>
+                            <input class="input" type="submit" value="Залогиниться"/>
+                        </div>
+                    </div>
 
-        </form>
+
+                    <br>
+                    {{ message }}
+
+                </form>
+                <input type="button" class="input" value="Регистрация" @click="switchForm"></input>
+            </div>
+            <div v-else>
+                <form @submit="registrate">
+
+
+                    <div class="login">
+                        <p>Логин</p>
+                        <input class="input" type="text" v-model="username">
+                    </div>
+                    <div class="password">
+                        <p>Пароль</p>
+                        <input class="input" type="password" v-model="password">
+                    </div>
+                    <div class="password">
+                        <p>Повторите пароль</p>
+                        <input class="input" type="password" v-model="rePassword">
+                    </div>
+                    <div class="another-button">
+                        <p>Зарегестрироваться</p>
+                        <input class="input" type="submit" value=">Зарегестрироваться"/>
+                    </div>
+
+
+                    <br>
+                    {{ regMessage }}
+
+                </form>
+                <input class="input" type="button" @click="switchForm" value="Авторизация"></input>
+
+            </div>
+
+
+            <div v-if="isEnter">
+                <input @click="disLogin" class="input" type="button" value="Выйти из профиля"></input>
+            </div>
+        </div>
     </div>
+
 </div>
+
+
 <fieldset class="snow-toggle">
     <legend class="snow-toggle__label">Переключатель осадков</legend>
     <label class="snow-toggle__item">

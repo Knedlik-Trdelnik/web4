@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Авторизация</title>
+    <title>Точки</title>
     <link rel="stylesheet" href="style/tables.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -16,6 +16,12 @@
      }
  }
 </script>
+<header class="header">
+    <img src="bullshit/itmo-cs-logo.png">
+    <p>Чайковский Никита Михайлович</p>
+    <p>P3217 Вар:7657</p>
+
+</header>
 <div class="topnav" id="myTopnav">
     <a href="index.html">Главная</a>
     <a href="main.html">График</a>
@@ -29,9 +35,7 @@
 
 <div class="cont">
     <div class="dots-table" id="app">
-        <button @click="loadDots" class="load-button">
-            Загрузить точки
-        </button>
+        <input type="button" @click="loadDots" class="input" value="Загрузить точки"></input>
         <p>
             Статус: {{ status }}
         </p>
@@ -50,6 +54,9 @@
             </tr>
             </thead>
         </table>
+        <input type="button" class="input" @click="awesome = !awesome" value="Переключить"></input>
+        <h1 v-if="awesome">Vue восхитителен!</h1>
+        <h1 v-else>О, нет 😢</h1>
     </div>
 </div>
 <fieldset class="snow-toggle">
@@ -122,5 +129,6 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="scripts/api.js"></script>
 <script type="module" src="scripts/table.js"></script>
+
 </body>
 </html>

@@ -6,7 +6,8 @@ createApp({
     data() {
         return {
             users: [],
-            status: "Бездействие..."
+            status: "Бездействие...",
+            awesome: true
         }
     },
     methods: {

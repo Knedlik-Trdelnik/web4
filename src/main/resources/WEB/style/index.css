@@ -1,3 +1,7 @@
+.header {
+    font-family: '8bit','Source Code Pro', monospace;
+}
+
 .login-cont {
 
     margin: 2rem auto;
@@ -50,7 +54,10 @@ body {
 .input[type="submit"]{
     font-family: '8bit','Source Code Pro', monospace;
 }
-
+.input[type="button"]{
+    border-radius: 4px;
+    font-family: '8bit','Source Code Pro', monospace;
+}
 
 .input:hover
  {

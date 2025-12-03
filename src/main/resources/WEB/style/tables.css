@@ -1,3 +1,8 @@
+
+
+.header {
+    font-family: '8bit','Source Code Pro', monospace;
+}
 table {
     border-collapse: collapse;
     border: 2px solid rgb(140 140 140);
@@ -59,6 +64,10 @@ body {
     transition: border-color .25s, box-shadow .25s, background .25s, transform 1s;
 }
 .input[type="submit"]{
+    font-family: '8bit','Source Code Pro', monospace;
+}
+.input[type="button"]{
+    border-radius: 4px;
     font-family: '8bit','Source Code Pro', monospace;
 }
 
