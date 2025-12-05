@@ -5,6 +5,7 @@
     <title>График</title>
     <link rel="stylesheet" href="style/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style/main.css">
 </head>
 <body>
 <script type="importmap">
@@ -21,7 +22,7 @@
 
 </header>
 <div class="topnav" id="myTopnav">
-    <a href="index.html" >Главная</a>
+    <a href="index.html">Главная</a>
     <a href="main.html" class="active">График</a>
     <a href="tables.html">Таблица точек</a>
     <a href="variant.html">О варианте</a>
@@ -29,10 +30,87 @@
         <i class="fa fa-bars"></i>
     </a>
 </div>
-<div id="app">
+<div class="login-cont">
+    <div class="dots-table" id="app">
+        <div v-if="isAuthorized">
+            <div class="graph">
+                тут буит канвас
+                <canvas id="graphCanvas" width="400" height="400" @click="canvasClick"></canvas>
+            </div>
+            <div class="polya">
+                Выбор радиуса:
+                <select v-model="rValue" class="select">
+                    <option>-3</option>
+                    <option>-2</option>
+                    <option>-1</option>
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+                <span> Выбрано: {{rValue}}</span>
+                <br>
+                <p class="rMessage">
+                    {{ rMessage }}
+                </p>
+                <br>
+                Выбор координаты Х:
+                <select v-model="xValue" class="select">
+                    <option>-3</option>
+                    <option>-2</option>
+                    <option>-1</option>
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+                <span> Выбрано: {{xValue}}</span>
+                <br>
+                Выбор координаты Y:
+                <input v-model="yValue" type="number" max="3" min="-3" value="Y (-3 ... 3)">
+                <br>
+                <input @click="dotFetch" class="input" type="button" value="Отправить точку"></input>
 
+                <table class="table">
+                    <caption>Точечки</caption>
+                    <thead>
+                    <tr>
+                        <th scope="col">Х</th>
+                        <th scope="col">Y</th>
+                        <th scope="col">R</th>
+                        <th scope="col">Время обработки</th>
+                        <th scope="col">Попал?</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="dot in dots">
+                        <th scope="col">{{ dot.x }}</th>
+                        <th scope="col">{{ dot.y }}</th>
+                        <th scope="col">{{ dot.r }}</th>
+                        <th scope="col">{{ dot.nano }}</th>
+                        <th scope="col">{{ dot.hitStatus }}</th>
+
+                    </tr>
+                    </tbody>
+
+
+                </table>
+            </div>
+        </div>
+
+        <div v-else>
+            <div class="denied-content">
+                <h1> Доступ ограничен</h1>
+                <p>График и история проверок доступны только авторизованным пользователям.</p>
+                <a href="index.html">Войти в аккаунт</a>
+            </div>
+        </div>
+    </div>
 </div>
-
 
 <fieldset class="snow-toggle">
     <legend class="snow-toggle__label">Переключатель осадков</legend>
@@ -101,6 +179,8 @@
 </script>
 <script src="scripts/snow.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="scripts/api.js"></script>
+<script type="module" src="scripts/graph.js"></script>
 
 </body>
 </html>

@@ -18,13 +18,20 @@ public class Dot {
     private double x;
     @NotNull
     @Column(name = "y")
-    private  double y;
+    private double y;
     @NotNull
     @Column(name = "r")
-    private  double r;
+    private double r;
     @NotNull
     @Column(name = "time")
-    private  int nano;
+    private int nano;
+
+    @NotNull
+    @Column(name = "hit_status")
+    private boolean hitStatus;
+    @NotNull
+    @Column(name = "user_id")
+    private Long userId;
 
     public Dot() {
     }
@@ -71,5 +78,48 @@ public class Dot {
 
     public void setNano(@NotNull int nano) {
         this.nano = nano;
+    }
+
+    @NotNull
+    public boolean isHitStatus() {
+        return hitStatus;
+    }
+
+
+    public @NotNull Long getUserId() {
+        return userId;
+    }
+
+    public void setHitStatus(@NotNull boolean hitStatus) {
+        this.hitStatus = hitStatus;
+    }
+
+
+    public void setUserId(@NotNull Long userId) {
+        this.userId = userId;
+    }
+
+    public void checkHit() {
+        if (this.x == 0.0 && this.y == 0.0 && this.r == 0.0) {
+            this.hitStatus = true;
+            return;
+        } else if (x <= 0 && y >= 0) {
+            if (x < r / 2d || y < r) {
+                this.hitStatus = true;
+                return;
+            }
+
+        } else if (x >= 0 && y >= 0) {
+            double dist = Math.sqrt(x*x+y*y);
+            if (dist<r/2d) {
+                this.hitStatus = true;
+                return;
+            }
+        } else if (x >= 0 && y <= 0) {
+            this.hitStatus = (Math.abs(y)/2d<=r-x);
+            return;
+        }
+        this.hitStatus = false;
+
     }
 }

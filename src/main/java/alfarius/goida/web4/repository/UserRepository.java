@@ -10,12 +10,12 @@ import jakarta.transaction.Transactional;
 
 @ApplicationScoped
 public class UserRepository {
-    //TODO: Пользователи (логины) неуникальны- исправить
 
     @PersistenceContext(unitName = "main")
     private EntityManager em;
 
     public User findUserByLogin(String name) throws NoSuchLoginException {
+        System.out.println("Ищем человека по имени");
         System.out.println(name);
 
         String jpql = "SELECT u FROM User u WHERE u.login = :name";
@@ -40,8 +40,8 @@ public class UserRepository {
     public void addUser(User user) throws NameIsAlreadyExistException {
         try {
             em.persist(user);
-        } catch (Exception e) {
-            throw e;
+        } catch (PersistenceException e) {
+            throw new NameIsAlreadyExistException();
         }
 
     }

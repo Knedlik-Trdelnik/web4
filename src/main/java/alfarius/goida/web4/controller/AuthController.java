@@ -69,17 +69,23 @@ public class AuthController {
         } catch (NoSuchLoginException e) {
             System.out.println("У него нет имени хахахахха");
 
-            return Response.status(418).build();
+            return Response.status(Response.Status.UNAUTHORIZED)
+                    .entity("{\"message\": \"Неверное имя пользователя или пароль\"}")
+                    .type(MediaType.APPLICATION_JSON)
+                    .build();
         }
         System.out.println("Он не смог залогинитья...");
-        return Response.status(418).build();
+        return Response.status(Response.Status.UNAUTHORIZED)
+                .entity("{\"message\": \"Неверное имя пользователя или пароль\"}")
+                .type(MediaType.APPLICATION_JSON)
+                .build();
     }
 
 
     private String createJWTToken(User user) {
         try {
             Instant now = Instant.now();
-            Instant expires = now.plus(Duration.ofHours(1));
+            Instant expires = now.plus(Duration.ofHours(24));
             String username = user.getLogin();
 
             Jwt jwt = Jwt.builder()

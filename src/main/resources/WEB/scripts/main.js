@@ -31,7 +31,6 @@ createApp({
 
                 const token = response.data.token;
                 localStorage.setItem("jwt_token", token)
-                // Обработка успешного ответа
                 console.log('Успешный вход:', response.data)
                 message.value = 'Успешный вход';
                 isEnter.value = true;
@@ -83,7 +82,12 @@ createApp({
                 let errorMessage = ' Ошибка сети или сервера'
 
                 if (error.response) {
-                    errorMessage = error.response.data.message || `❌ Ошибка: ${error.response.status} ${error.response.statusText}`
+
+                    if (error.response.status == 418) {
+                        errorMessage = error.response.data.message || `❌ Ошибка: имя занято`
+                    }else {
+                        errorMessage = error.response.data.message || `❌ Ошибка: ${error.response.status} ${error.response.statusText}`
+                    }
                 }
 
                 regMessage.value = errorMessage
@@ -100,7 +104,6 @@ createApp({
         }
 
         const disLogin = (event) => {
-            //event.preventDefault();
             localStorage.removeItem("jwt_token");
             isEnter.value = false;
             username.value = '';

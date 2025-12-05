@@ -43,20 +43,29 @@
             <caption>Точечки</caption>
             <thead>
             <tr>
-                <th scope="col">Польз.</th>
                 <th scope="col">Х</th>
                 <th scope="col">Y</th>
                 <th scope="col">R</th>
                 <th scope="col">Время обработки</th>
                 <th scope="col">Попал?</th>
-            <tbody>
-            </tbody>
             </tr>
             </thead>
+            <tbody>
+            <tr v-for="dot in dots">
+                <th scope="col">{{ dot.x }}</th>
+                <th scope="col">{{ dot.y }}</th>
+                <th scope="col">{{ dot.r }}</th>
+                <th scope="col">{{ dot.nano }}</th>
+                <th scope="col">{{ dot.hitStatus }}</th>
+
+            </tr>
+            </tbody>
+
+
         </table>
         <input type="button" class="input" @click="awesome = !awesome" value="Переключить"></input>
-        <h1 v-if="awesome">Vue восхитителен!</h1>
-        <h1 v-else>О, нет 😢</h1>
+        <h1 v-if="awesome">Раз</h1>
+        <h1 v-else>Два</h1>
     </div>
 </div>
 <fieldset class="snow-toggle">
