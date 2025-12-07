@@ -109,7 +109,7 @@ createApp({
             ctx.fillText("-2R", 210, 280)
             ctx.fillText("-1R", 210, 240)
 
-            ctx.strokeStyle = 'black';
+            ctx.strokeStyle = "#4864d6";
             ctx.lineWidth = 2;
             ctx.stroke();
         },
