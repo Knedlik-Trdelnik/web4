@@ -34,8 +34,10 @@
     <div class="dots-table" id="app">
         <div v-if="isAuthorized">
             <div class="graph">
-                тут буит канвас
-                <canvas id="graphCanvas" width="400" height="400" @click="canvasClick"></canvas>
+
+                <canvas id="graphic" width="400" height="400" @click="canvasClick"></canvas>
+                <br>
+                *тут буит канвас*
             </div>
             <div class="polya">
                 Выбор радиуса:
