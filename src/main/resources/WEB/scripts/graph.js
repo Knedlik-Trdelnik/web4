@@ -274,6 +274,7 @@ createApp({
         }
         this.$nextTick(() => {
             this.drawEvrt();
+            this.onclick(this.rValue);
 
         });
 
