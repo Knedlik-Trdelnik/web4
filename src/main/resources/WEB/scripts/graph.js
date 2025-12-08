@@ -175,6 +175,27 @@ createApp({
 
         },
 
+        drawPoint(x,y, hitStatus) {
+            const canvas = document.getElementById("graphic");
+            const ctx = canvas.getContext("2d");
+            const centerX = 200;
+            const centerY = 200;
+            const scale = 40;
+
+            const pixelX = centerX + x * scale;
+            const pixelY = centerY - y * scale;
+
+            ctx.beginPath();
+            ctx.arc(pixelX, pixelY, 4, 0, 2 * Math.PI);
+
+            if (hitStatus == "true") {
+                ctx.fillStyle = "green";
+            } else {
+                ctx.fillStyle = "red";
+            }
+            ctx.fill();
+        },
+
         async dotFetchWithArgs(x, y, r) {
             const dotData = {
 
