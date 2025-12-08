@@ -36,6 +36,10 @@
 <div class="cont">
     <div class="dots-table" id="app">
         <input type="button" @click="loadDots" class="input" value="Загрузить точки"></input>
+        <p>Номер страницы:
+        <br>
+        <input v-model="pageNumber" type="number" min="1" ></input>
+        </p>
         <p>
             Статус: {{ status }}
         </p>

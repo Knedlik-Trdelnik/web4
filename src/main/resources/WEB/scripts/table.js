@@ -5,13 +5,17 @@ createApp({
         return {
             dots: [],
             status: "Бездействие...",
-            awesome: true
+            awesome: true,
+            pageNumber: 1
         }
     },
     methods: {
         async loadDots() {
             try {
-                const response = await axios.get("dots/");
+                const pageData = {
+                    pageNumber: this.pageNumber,
+                }
+                const response = await axios.post("dots/",pageData);
                 this.dots = response.data;
                 console.log("Успешная загрузка: " + response.data);
                 this.status = "Точки успешно загружены!"
