@@ -223,7 +223,7 @@ createApp({
                 y: this.yValue,
                 r: this.rValue
             }
-            if (isEvrGood) {
+            if (this.isEvrGood) {
                 try {
                     const response = await axios.post('dots', dotData);
                     console.log(response.data);

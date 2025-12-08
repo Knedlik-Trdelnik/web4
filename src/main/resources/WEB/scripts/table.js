@@ -15,7 +15,7 @@ createApp({
                 const pageData = {
                     pageNumber: this.pageNumber,
                 }
-                const response = await axios.post("dots/",pageData);
+                const response = await axios.post("dots/data",pageData);
                 this.dots = response.data;
                 console.log("Успешная загрузка: " + response.data);
                 this.status = "Точки успешно загружены!"

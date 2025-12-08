@@ -12,7 +12,7 @@ import jakarta.transaction.Transactional;
 import java.util.List;
 
 @ApplicationScoped
-public class DotsRepository {
+public class  DotsRepository {
 
     @PersistenceContext(unitName = "main")
     private EntityManager em;

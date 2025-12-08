@@ -1,6 +1,7 @@
 package alfarius.goida.web4.controller;
 
 import alfarius.goida.web4.models.Dot;
+import alfarius.goida.web4.models.DotsRequest;
 import alfarius.goida.web4.models.HitRequest;
 import alfarius.goida.web4.models.User;
 import alfarius.goida.web4.repository.DotsRepository;
@@ -61,6 +62,21 @@ public class DotsController {
         System.out.println("Попадание обработано!");
         return Response
                 .ok(dot)
+                .build();
+    }
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/data")
+    @POST
+    public Response getDotsByPage(DotsRequest dotsRequest, @Context SecurityContext securityContext) {
+        return Response
+                .ok(dR.getDotsByPagesAndUser(dotsRequest.getPageNumber(),
+                        uR.findUserByLogin(
+                                securityContext
+                                        .getUserPrincipal()
+                                        .getName()
+                        )
+                ))
                 .build();
     }
 }
