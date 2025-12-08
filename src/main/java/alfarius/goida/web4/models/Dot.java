@@ -104,7 +104,7 @@ public class Dot {
             this.hitStatus = true;
             return;
         } else if (x <= 0 && y >= 0) {
-            if (x < r / 2d || y < r) {
+            if (Math.abs(x) < r / 2d && y < r) {
                 this.hitStatus = true;
                 return;
             }
@@ -116,7 +116,9 @@ public class Dot {
                 return;
             }
         } else if (x >= 0 && y <= 0) {
-            this.hitStatus = (Math.abs(y)/2d<=r-x);
+            this.hitStatus = (Math.abs(y)<=r/2d
+                    && x<=r
+                    && y>=x/2-r/2d);
             return;
         }
         this.hitStatus = false;

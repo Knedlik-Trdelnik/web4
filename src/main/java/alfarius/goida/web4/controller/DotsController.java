@@ -48,6 +48,7 @@ public class DotsController {
 
         Dot dot = new Dot();
         dot.setR(hitRequest.getR());
+
         dot.setX(hitRequest.getX());
         dot.setY(hitRequest.getY());
         dot.checkHit();

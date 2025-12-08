@@ -2,12 +2,12 @@ import {createApp} from 'vue'
 
 
 createApp({
-    // Состояние компонента
+
     data() {
         return {
             isAuthorized: false,
             dots: [],
-            rValue: 1, // Пример реактивной переменной для радиуса
+            rValue: 1,
             yValue: 0,
             xValue: 0,
             rMessage: '',
@@ -122,29 +122,30 @@ createApp({
             ctx.beginPath()
 
             //треугольник  в 2 четверти
-            ctx.moveTo(200 - 40 * r, 200);
+            ctx.moveTo(200 - 20 * r, 200);
 
-            ctx.lineTo(200, 200 - r * 40);
+            ctx.lineTo(200 - 20 * r, 200 - r * 40);
+            ctx.lineTo(200, 200 - r * 40)
             ctx.lineTo(200, 200)
-            ctx.lineTo(200 - 40 * r, 200)
+            ctx.lineTo(200 - 20 * r, 200)
 
             ctx.fillStyle = "#7bc8f6";
             ctx.fill()
-            //четверть круга  в 3 четверти
+            //четверть круга  в 1 четверти
             ctx.moveTo(200, 200);
 
 
-            ctx.arc(200, 200, r * 40, Math.PI / 2, Math.PI)
+            ctx.arc(200, 200, r * 20, -Math.PI / 2,0)
             ctx.moveTo(200, 200);
-            ctx.moveTo(200, 200 - 40 * r)
+            ctx.moveTo(200, 200 + 20 * r)
             ctx.fill()
 
-            //квадрат 1 К 1 В 4 четверти
+            //треугольник
 
             ctx.lineTo(200, 200);
             ctx.lineTo(200 + r * 40, 200);
-            ctx.lineTo(200 + r * 40, 200 + r * 40);
-            ctx.lineTo(200, 200 + 40 * r)
+
+            ctx.lineTo(200, 200 + 20 * r)
             ctx.fill()
 
 
@@ -156,8 +157,8 @@ createApp({
 
             this.drawEvrt();
             //drawPointsWithNewR(r);
-            console.log("Все наши точки....");
-            console.log(points);
+            //console.log("Все наши точки....");
+            //console.log(points);
         },
 
         canvasClick(event) {
@@ -176,6 +177,8 @@ createApp({
         },
 
         drawPoint(x,y, hitStatus) {
+            console.log("Рисуем точку "+ x + " " + y + "" + hitStatus);
+
             const canvas = document.getElementById("graphic");
             const ctx = canvas.getContext("2d");
             const centerX = 200;
@@ -188,7 +191,7 @@ createApp({
             ctx.beginPath();
             ctx.arc(pixelX, pixelY, 4, 0, 2 * Math.PI);
 
-            if (hitStatus == "true") {
+            if (hitStatus === true) {
                 ctx.fillStyle = "green";
             } else {
                 ctx.fillStyle = "red";
@@ -204,13 +207,26 @@ createApp({
                 r: r
             }
             if (this.isEvrGood) {
+
                 try {
                     const response = await axios.post('dots', dotData);
                     console.log(response.data);
-                    this.dots.push(response.data);
+                    const dotDataFromServer  = {
+
+                        x: response.data.x.toFixed(5),
+                        y: response.data.y.toFixed(5),
+                        r: response.data.r,
+                        hitStatus: response.data.hitStatus,
+                        nano: response.data.nano
+                    }
+                    console.log(dotDataFromServer);
+                    this.dots.push(dotDataFromServer);
+                    this.drawPoint(dotDataFromServer.x,dotDataFromServer.y,dotDataFromServer.hitStatus);
                 } catch (error) {
                     console.error('Ошибка входа:', error)
                 }
+            } else {
+                console.log("А точка-то плохая");
             }
 
         },
@@ -221,13 +237,24 @@ createApp({
 
                 x: this.xValue,
                 y: this.yValue,
-                r: this.rValue
+                r: this.rValue,
+
             }
             if (this.isEvrGood) {
                 try {
                     const response = await axios.post('dots', dotData);
                     console.log(response.data);
-                    this.dots.push(response.data);
+                    const dotDataFromServer  = {
+
+                        x: response.data.x.toFixed(5),
+                        y: response.data.y.toFixed(5),
+                        r: response.data.r,
+                        hitStatus: response.data.hitStatus,
+                        nano: response.data.nano
+                    }
+                    console.log(dotDataFromServer);
+                    this.dots.push(dotDataFromServer);
+                    this.drawPoint(dotDataFromServer.x,dotDataFromServer.y,dotDataFromServer.hitStatus);
                 } catch (error) {
                     console.error('Ошибка входа:', error)
                 }
@@ -247,8 +274,7 @@ createApp({
         }
         this.$nextTick(() => {
             this.drawEvrt();
-            // если хочешь загрузить уже существующие точки с сервера:
-            // axios.get('/dots').then(r => { this.dots = r.data; this.drawEvrt(); })
+
         });
 
 
